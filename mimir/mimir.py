@@ -1,5 +1,8 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CommandHandler, CallbackQueryHandler, Application, ContextTypes, MessageHandler, Updater, filters
+import os
+
+API_TOKEN = os.environ['API_TOKEN']
 
 async def start(update: Update, context: CallbackQueryHandler) -> None:
 
@@ -11,3 +14,11 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         \n/help – Seek guidance, and I shall whisper the way.
         """
     )
+
+def runner():
+    application = Application.builder().token(API_TOKEN).build()
+
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("help", help))
+
+    application.run_polling()
