@@ -1,6 +1,9 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CommandHandler, CallbackQueryHandler, Application, ContextTypes, MessageHandler, Updater, filters
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 API_TOKEN = os.environ['API_TOKEN']
 
